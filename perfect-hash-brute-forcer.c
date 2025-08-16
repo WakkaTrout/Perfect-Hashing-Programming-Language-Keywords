@@ -14,12 +14,25 @@ char * c_terms[] = {"auto", "break", "case", "char", "const", "continue", "defau
                     "int", "inline", "long", "register", "restrict", "return", "short", "signed", "sizeof", "static", "struct", "switch", "typedef", "union",
                     "unsigned", "void", "volatile", "while"};
 
+inline uint32_t fnv1_hash_32_bit(const char* string, const uint32_t fnv_offset, const uint32_t fnv_prime)
+{
+    uint32_t hash = fnv_offset;
+    const char* byte_ptr = string;
+    while(*byte_ptr != 0)
+    {
+        hash = hash * fnv_prime;
+        hash = hash ^ ((uint32_t)*byte_ptr);
+        byte_ptr = byte_ptr + 1;
+    }
+    return hash;
+}
+
 void calculate_fnv1_constants(char ** terms, size_t terms_len)
 {
     bool values[WORKSPACE_SIZE];
 
     // loop through all pairs of constants
-    for ( uint64_t fnv_offset_basis = 0; fnv_offset_basis < 4294967296; ++fnv_offset_basis )
+    for ( uint64_t fnv_offset_basis = 1; fnv_offset_basis < 4294967296; ++fnv_offset_basis )
     {
         for ( uint64_t fnv_offset_prime = 0; fnv_offset_prime < 4294967296; ++fnv_offset_prime)
         {
@@ -28,14 +41,7 @@ void calculate_fnv1_constants(char ** terms, size_t terms_len)
             // calculate the hashes of all of the strings and set the indices to true
             for (size_t i = 0; i < terms_len; ++i)
             {
-                uint32_t hash = (uint32_t) fnv_offset_basis;
-                char* byte_ptr = terms[i];
-                while(*byte_ptr != 0)
-                {
-                    hash = hash * (uint32_t) fnv_offset_prime;
-                    hash = hash ^ (uint32_t)*byte_ptr;
-                    byte_ptr = byte_ptr + 1;
-                }
+                uint32_t hash = fnv1_hash_32_bit(terms[i], (uint32_t) fnv_offset_basis, (uint32_t) fnv_offset_prime);
                 uint32_t mod_hash = hash % terms_len;
                 values[mod_hash] = true;
             }
@@ -44,13 +50,13 @@ void calculate_fnv1_constants(char ** terms, size_t terms_len)
             bool hit = true;
             for (size_t i = 0; i < terms_len; ++i)
             {
-                if (!values[i])
+                if ( values[i] != true )
                 {
                     hit = false;
                     break;
                 }
             }
-            if (hit)
+            if (hit == true)
             {
                 printf("Perfect FNV1 Hash: Offset %d, Prime: %d\n", (uint32_t) fnv_offset_basis, (uint32_t) fnv_offset_prime);
             }
@@ -60,6 +66,19 @@ void calculate_fnv1_constants(char ** terms, size_t terms_len)
             printf("Done with 32-bit offset basis %d\n", (uint32_t) fnv_offset_basis);
         }
     }
+}
+
+inline uint32_t fnv1a_hash_32_bit(const char* string, const uint32_t fnv_offset, const uint32_t fnv_prime)
+{
+    uint32_t hash = fnv_offset;
+    const char* byte_ptr = string;
+    while(*byte_ptr != 0)
+    {
+        hash = hash ^ ((uint32_t)*byte_ptr);
+        hash = hash * fnv_prime;
+        byte_ptr = byte_ptr + 1;
+    }
+    return hash;
 }
 
 void calculate_fnv1a_constants(char ** terms, size_t terms_len)
@@ -76,14 +95,7 @@ void calculate_fnv1a_constants(char ** terms, size_t terms_len)
             // calculate the hashes of all of the strings and set the indices to true
             for (size_t i = 0; i < terms_len; ++i)
             {
-                uint32_t hash = (uint32_t) fnv_offset_basis;
-                char* byte_ptr = terms[i];
-                while(*byte_ptr != 0)
-                {
-                    hash = hash ^ (uint32_t)*byte_ptr;
-                    hash = hash * (uint32_t) fnv_offset_prime;
-                    byte_ptr = byte_ptr + 1;
-                }
+                uint32_t hash = fnv1a_hash_32_bit(terms[i], (uint32_t)fnv_offset_basis, (uint32_t) fnv_offset_prime);
                 uint32_t mod_hash = hash % terms_len;
                 values[mod_hash] = true;
             }
@@ -92,13 +104,13 @@ void calculate_fnv1a_constants(char ** terms, size_t terms_len)
             bool hit = true;
             for (size_t i = 0; i < terms_len; ++i)
             {
-                if (!values[i])
+                if ( values[i] != true )
                 {
                     hit = false;
                     break;
                 }
             }
-            if (hit)
+            if (hit == true)
             {
                 printf("Perfect FNV1A Hash: Offset %d, Prime: %d\n", (uint32_t) fnv_offset_basis, (uint32_t)fnv_offset_prime);
             }
@@ -213,11 +225,9 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 #endif
 {
   const size_t term_len = sizeof(c_terms)/sizeof(char*);
-  //printAllPermutationTerms((const char**)terms, term_len, 4);
   calculate_fnv1_constants(c_terms, term_len);
   printf("Done with fnv1\n");
   calculate_fnv1a_constants(c_terms, term_len);
   printf("Done with fnv1a");
-  //test_print();
-	return 0;
+  return 0;
 }
