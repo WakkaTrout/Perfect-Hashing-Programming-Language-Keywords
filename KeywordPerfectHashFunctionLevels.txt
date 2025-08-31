@@ -1,5 +1,6 @@
 Perfect Hash Functions Tiers for hashing n language keywords strings of up to length k
-Level 1: Perfect hash of the strings into entries 0-(n-1)
+Level 0: Perfect hash of the strings (no collisions)
+Level 1: Perfect hash of the strings into entries 0-(n-1) (i.e. continuous values)
 Level 2: Level 1 and All strings of length m not in the set of n strings do not collide with strings in the set of length m when hashed
   NOTE: For hash functions that only produce hashes in the range 0-(n-1), only applicable to a set of strings with at least two strings having different sizes.
 Level 3: Level 2 and no modulo division is used in the perfect hash function (this helps with running the hash function at scale as modulo is expensive)
