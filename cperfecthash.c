@@ -11,7 +11,7 @@ uint32_t c_perfect_hash_32bit_fnv1_with_mod_func_0(const char* string, const siz
         hash = hash * 3462989662; // fnv1 prime
         hash = hash ^ ((uint32_t)string[i]);
     }
-    hash = hash % 37; // mod to fit into 37 entries (there are 34 for C keywords)
+    hash = hash % 37; // mod to fit into 37 entries (there are 34 for C keywords, so it is not tight making it a level 0 function)
     return hash;
 }
 
