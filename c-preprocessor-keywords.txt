@@ -1,4 +1,12 @@
 define
+elif
+else
+endif
+error
 ifdef
+ifndef
 if
 include
+line
+pragma
+undef
