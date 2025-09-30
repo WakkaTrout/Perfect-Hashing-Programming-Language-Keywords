@@ -1,3 +1,4 @@
+#include <stdint.h>
 // FNV1 Hash (https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
 // NOTE: There are no 8-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
 // NOTE: There are no 16-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
