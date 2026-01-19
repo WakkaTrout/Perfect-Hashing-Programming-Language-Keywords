@@ -1,10 +1,11 @@
 #include <stdint.h>
 // FNV1 Hash (https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
+// NOTE: There are 3884 8-Bit FNV1 Level 0 Hash Functions for the C programming language
 // NOTE: There are no 8-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
 // NOTE: There are no 16-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
 
 
-// Level 0 
+// Level 0
 uint8_t c_perfect_hash_8bit_fnv1_func_0(const char* string, const size_t string_len)
 {
     uint8_t hash = 0; // fnv1 offset
@@ -17,40 +18,40 @@ uint8_t c_perfect_hash_8bit_fnv1_func_0(const char* string, const size_t string_
 }
 enum fnv1_func0_enums
 {
-AUTO_FNV1_FUNC0_TOKEN = 1,
-BREAK_FNV1_FUNC0_TOKEN = 169,
-CASE_FNV1_FUNC0_TOKEN = 108,
-char: hash 8-bit 164
-const: hash 8-bit 217
-continue: hash 8-bit 247
-default: hash 8-bit 47
-do: hash 8-bit 179
-double: hash 8-bit 211
-else: hash 8-bit 99
-enum: hash 8-bit 79
-extern: hash 8-bit 250
-float: hash 8-bit 162
-for: hash 8-bit 201
-goto: hash 8-bit 61
-if: hash 8-bit 65
-int: hash 8-bit 51
-inline: hash 8-bit 131
-long: hash 8-bit 242
-register: hash 8-bit 39
-restrict: hash 8-bit 24
-return: hash 8-bit 50
-short: hash 8-bit 246
-signed: hash 8-bit 228
-sizeof: hash 8-bit 84
-static: hash 8-bit 86
-struct: hash 8-bit 11
-switch: hash 8-bit 112
-typedef: hash 8-bit 81
-union: hash 8-bit 161
-unsigned: hash 8-bit 53
-void: hash 8-bit 26
-volatile: hash 8-bit 212
-WHILE_FNV1_FUNC0_TOKEN = 95
+    AUTO_FNV1_FUNC0_TOKEN = 1,
+    BREAK_FNV1_FUNC0_TOKEN = 169,
+    CASE_FNV1_FUNC0_TOKEN = 108,
+    CHAR_FNV1_FUNC0_TOKEN = 164,
+    CONST_FNV1_FUNC0_TOKEN = 217,
+    CONTINUE_FNV1_FUNC0_TOKEN = 247,
+    DEFAULT_FNV1_FUNC0_TOKEN = 47,
+    DO_FNV1_FUNC0_TOKEN = 179,
+    DOUBLE_FNV1_FUNC0_TOKEN = 211,
+    ELSE_FNV1_FUNC0_TOKEN = 99,
+    ENUM_FNV1_FUNC0_TOKEN = 79,
+    EXTERN_FNV1_FUNC0_TOKEN = 250,
+    FLOAT_FNV1_FUNC0_TOKEN = 162,
+    FOR_FNV1_FUNC0_TOKEN = 201,
+    GOTO_FNV1_FUNC0_TOKEN = 61,
+    IF_FNV1_FUNC0_TOKEN = 65,
+    INT_FNV1_FUNC0_TOKEN = 51,
+    INLINE_FNV1_FUNC0_TOKEN = 131,
+    LONG_FNV1_FUNC0_TOKEN = 242,
+    REGISTER_FNV1_FUNC0_TOKEN = 39,
+    RESTRICT_FNV1_FUNC0_TOKEN = 24,
+    RETURN_FNV1_FUNC0_TOKEN = 50,
+    SHORT_FNV1_FUNC0_TOKEN = 246,
+    SIGNED_FNV1_FUNC0_TOKEN = 228,
+    SIZEOF_FNV1_FUNC0_TOKEN = 84,
+    STATIC_FNV1_FUNC0_TOKEN = 86,
+    STRUCT_FNV1_FUNC0_TOKEN = 11,
+    SWITCH_FNV1_FUNC0_TOKEN = 112,
+    TYPEDEF_FNV1_FUNC0_TOKEN = 81,
+    UNION_FNV1_FUNC0_TOKEN = 161,
+    UNSIGNED_FNV1_FUNC0_TOKEN = 53,
+    VOID_FNV1_FUNC0_TOKEN = 26,
+    VOLATILE_FNV1_FUNC0_TOKEN = 212,
+    WHILE_FNV1_FUNC0_TOKEN = 95
 };
 
 uint32_t c_perfect_hash_32bit_fnv1_with_mod_func_0(const char* string, const size_t string_len)
