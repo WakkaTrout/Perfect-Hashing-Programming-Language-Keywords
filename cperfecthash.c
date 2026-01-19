@@ -105,10 +105,22 @@ enum fnv1_with_mod_func0_enums
 };
 
 // FNV1A Hash (https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)
+// NOTE: There are 2820 8-Bit FNV1A Level 0 Hash Functions for the C programming language
 // NOTE: There are no 8-bit FNV1A Perfect hash functions for the C programming language
 // NOTE: There are no 16-bit FNV1A Perfect hash functions for the C programming language
 
-// Level 0 
+// Level 0
+uint8_t c_perfect_hash_8bit_fnv1a_func_0(const char* string, const size_t string_len)
+{
+    uint8_t hash = 0; // fnv1a offset
+    for(size_t i = 0; i < string_len; ++i)
+    {
+        hash = hash ^ ((uint8_t)string[i]);
+        hash = hash * 15;  // fnv1a prime
+    }
+    return hash;
+}
+
 uint32_t c_perfect_hash_fnv1a(const char* string)
 {
   return 0;
