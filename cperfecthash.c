@@ -66,6 +66,19 @@ uint8_t c_perfect_hash_8bit_fnv1_func_1(const char* string, const size_t string_
     return hash;
 }
 
+// Longest run of continguous hashes starting from least hash (least hash of 1652)
+uint16_t c_perfect_hash_16bit_fnv1_func_0(const char* string, const size_t string_len)
+{
+    uint16_t hash = 7; // fnv1 offset
+    for(size_t i = 0; i < string_len; ++i)
+    {
+        hash = hash * 2868; // fnv1 prime
+        hash = hash ^ ((uint16_t)string[i]);
+    }
+    return hash;
+}
+
+
 // FNV1 Hash With Mod
 // NOTE: There are XX 8-Bit FNV1 Level 0 Hash Functions for the C programming language
 // NOTE: There are XX 8-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
@@ -146,6 +159,17 @@ uint8_t c_perfect_hash_8bit_fnv1a_func_1(const char* string, const size_t string
     {
         hash = hash ^ ((uint8_t)string[i]);
         hash = hash * 251;  // fnv1a prime
+    }
+    return hash;
+}
+// Longest run of continguous hashes starting from least hash (least hash of 8627)
+uint16_t c_perfect_hash_16bit_fnv1a_func_0(const char* string, const size_t string_len)
+{
+    uint16_t hash = 16; // fnv1 offset
+    for(size_t i = 0; i < string_len; ++i)
+    {
+        hash = hash ^ ((uint16_t)string[i]);
+        hash = hash * 18133;  // fnv1a prime
     }
     return hash;
 }
