@@ -54,6 +54,18 @@ enum fnv1_func0_enums
     WHILE_FNV1_FUNC0_TOKEN = 95
 };
 
+// Longest run of continguous hashes starting from least hash (least hash of 5)
+uint8_t c_perfect_hash_8bit_fnv1_func_1(const char* string, const size_t string_len)
+{
+    uint8_t hash = 52; // fnv1 offset
+    for(size_t i = 0; i < string_len; ++i)
+    {
+        hash = hash * 227; // fnv1 prime
+        hash = hash ^ ((uint8_t)string[i]);
+    }
+    return hash;
+}
+
 // FNV1 Hash With Mod
 // NOTE: There are XX 8-Bit FNV1 Level 0 Hash Functions for the C programming language
 // NOTE: There are XX 8-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
@@ -117,11 +129,11 @@ enum fnv1_with_mod_func0_enums
 // Level 0
 uint8_t c_perfect_hash_8bit_fnv1a_func_0(const char* string, const size_t string_len)
 {
-    uint8_t hash = 0; // fnv1a offset
+    uint8_t hash = 84; // fnv1a offset
     for(size_t i = 0; i < string_len; ++i)
     {
         hash = hash ^ ((uint8_t)string[i]);
-        hash = hash * 15;  // fnv1a prime
+        hash = hash * 251;  // fnv1a prime
     }
     return hash;
 }
