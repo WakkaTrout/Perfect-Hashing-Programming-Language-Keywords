@@ -54,6 +54,11 @@ enum fnv1_func0_enums
     WHILE_FNV1_FUNC0_TOKEN = 95
 };
 
+// FNV1 Hash With Mod
+// NOTE: There are XX 8-Bit FNV1 Level 0 Hash Functions for the C programming language
+// NOTE: There are XX 8-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
+// NOTE: There are XX 16-bit FNV1 Level 1 or higher Perfect hash functions for the C programming language
+
 uint32_t c_perfect_hash_32bit_fnv1_with_mod_func_0(const char* string, const size_t string_len)
 {
     uint32_t hash = 3; // fnv1 offset
