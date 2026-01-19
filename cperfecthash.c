@@ -7,13 +7,12 @@
 // Level 0 
 uint8_t c_perfect_hash_8bit_fnv1_func_0(const char* string, const size_t string_len)
 {
-    uint32_t hash = 0; // fnv1 offset
+    uint8_t hash = 0; // fnv1 offset
     for(size_t i = 0; i < string_len; ++i)
     {
-        hash = hash * 3462989662; // fnv1 prime
-        hash = hash ^ ((uint32_t)string[i]);
+        hash = hash * 15; // fnv1 prime
+        hash = hash ^ ((uint8_t)string[i]);
     }
-    hash = hash % 37; // mod to fit into 37 entries (there are 34 for C keywords, so it is not tight making it a level 0 function)
     return hash;
 }
 enum fnv1_func0_enums
